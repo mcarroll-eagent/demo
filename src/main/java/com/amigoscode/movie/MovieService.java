@@ -1,5 +1,6 @@
 package com.amigoscode.movie;
 
+import com.amigoscode.dto.MovieDto;
 import com.amigoscode.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +43,12 @@ public class MovieService {
     public Movie getMovie(int id) {
         return movieDao.selectMovieById(id)
                 .orElseThrow(() -> new NotFoundException(String.format("Movie with id %s not found", id)));
+    }
+
+    public void editMovie(MovieDto movieDto) {
+        int result = movieDao.editMovie(movieDto);
+        if(result != 1){
+            throw new IllegalStateException("oops something went wrong");
+        }
     }
 }

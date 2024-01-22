@@ -1,4 +1,8 @@
 package com.amigoscode.actor;
 
-public record Actor(Integer id, String name) {
+public record Actor(
+        Integer id,
+        String name,
+        Integer movie) {
+
 }

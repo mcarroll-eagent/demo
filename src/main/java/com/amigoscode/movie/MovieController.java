@@ -1,5 +1,6 @@
 package com.amigoscode.movie;
 
+import com.amigoscode.dto.MovieDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +34,9 @@ public class MovieController {
     public void deleteMovie(@PathVariable("id") Integer id) {
         movieService.deleteMovie(id);
     }
+
+    @PostMapping("edit")
+    public void editMovie(@RequestBody MovieDto movieDto) { movieService.editMovie(movieDto); }
 
    // TODO: Update movie
 }

@@ -1,5 +1,7 @@
 package com.amigoscode.movie;
 
+import com.amigoscode.dto.MovieDto;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -8,5 +10,6 @@ public interface MovieDao {
     int insertMovie(Movie movie);
     int deleteMovie(int id);
     Optional<Movie> selectMovieById(int id);
+    int editMovie(MovieDto movieDto);
     // TODO: Update
 }
