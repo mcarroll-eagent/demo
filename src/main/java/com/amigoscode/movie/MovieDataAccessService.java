@@ -26,44 +26,37 @@ public class MovieDataAccessService implements MovieDao {
     public List<Movie> selectMovies() {
         final
         var sql = """
-                SELECT id, name, release_date
-                FROM movie
+            Select m.*, to_json(array_agg(row_to_json(a))) as actors
+            From movie m
+            Inner Join actor a on m.id = a.movie
+            GROUP BY m.id
                 """;
         final List<Movie> movies =
                 jdbcTemplate.query(sql, new MovieRowMapper());
 
 
-        var actorData = """
-                        SELECT name, id, movie
-                        FROM actor
-                        WHERE movie = :movieId
-                        """;
-
-        for(final Movie movie : movies) {
-            final MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-            parameterSource.addValue("movieId", movie.id());
-
-            final List<Actor> newActors =
-                    jdbcTemplate.query(actorData, parameterSource, new ActorRowMapper());
-
-            final Movie newMovie = new Movie(
-                    movie.id(),
-                    movie.name(),
-                    newActors,
-                    movie.releaseDate()
-            );
-
-            movies.set(movies.indexOf(movie), newMovie);
-        }
-
-
-        var actorsForMovie = """
-                    SELECT actor.movie, actor.name
-                    FROM actor
-                    INNER JOIN movie
-                    ON actor.movie = movie.id
-                    WHERE actor.movie = movie.id
-                """;
+//        var actorData = """
+//                        SELECT name, id, movie
+//                        FROM actor
+//                        WHERE movie = :movieId
+//                        """;
+//
+//        for(final Movie movie : movies) {
+//            final MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+//            parameterSource.addValue("movieId", movie.id());
+//
+//            final List<Actor> newActors =
+//                    jdbcTemplate.query(actorData, parameterSource, new ActorRowMapper());
+//
+//            final Movie newMovie = new Movie(
+//                    movie.id(),
+//                    movie.name(),
+//                    newActors,
+//                    movie.releaseDate()
+//            );
+//
+//            movies.set(movies.indexOf(movie), newMovie);
+//        }
 
 
 
@@ -104,10 +97,20 @@ public class MovieDataAccessService implements MovieDao {
         parameterSource.addValue("id", id);
 
         final var sql = """
-                SELECT id, name, release_date
-                FROM movie
-                WHERE id = :id;
+            
+            Select m.*, to_json(array_agg(row_to_json(a))) as actors
+            From movie m
+            Inner Join actor a on m.id = a.movie
+            WHERE m.id = :id
+            GROUP BY m.id
                 """;
+
+//         var sql = """
+//                    Select m.*, to_json(array_agg(row_to_json(a))) as actors
+//                    From movie m
+//                    Inner Join actor a on m.id = a.movie
+//                    GROUP BY m.id
+//                """;
         return jdbcTemplate.query(sql, parameterSource, new MovieRowMapper())
                 .stream()
                 .findFirst();
