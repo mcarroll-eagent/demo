@@ -1,4 +1,4 @@
-package com.amigoscode.dto;
+package com.diversecomputing.demoproject.dto;
 
 import lombok.Data;
 

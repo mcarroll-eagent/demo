@@ -1,6 +1,6 @@
-package com.amigoscode.actor;
+package com.diversecomputing.demoproject.actor;
 
-import com.amigoscode.dto.ActorDto;
+import com.diversecomputing.demoproject.dto.ActorDto;
 
 import java.util.List;
 

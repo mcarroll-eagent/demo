@@ -1,4 +1,4 @@
-package com.amigoscode.actor;
+package com.diversecomputing.demoproject.actor;
 
 public record Actor(
         Integer id,

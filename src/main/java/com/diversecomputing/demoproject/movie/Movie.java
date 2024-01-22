@@ -1,6 +1,6 @@
-package com.amigoscode.movie;
+package com.diversecomputing.demoproject.movie;
 
-import com.amigoscode.actor.Actor;
+import com.diversecomputing.demoproject.actor.Actor;
 
 import java.time.LocalDate;
 import java.util.List;

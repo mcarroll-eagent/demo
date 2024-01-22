@@ -1,7 +1,6 @@
-package com.amigoscode.actor;
+package com.diversecomputing.demoproject.actor;
 
-import com.amigoscode.dto.ActorDto;
-import com.amigoscode.exception.NotFoundException;
+import com.diversecomputing.demoproject.dto.ActorDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

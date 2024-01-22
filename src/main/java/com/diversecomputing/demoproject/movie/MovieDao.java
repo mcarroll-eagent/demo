@@ -1,6 +1,6 @@
-package com.amigoscode.movie;
+package com.diversecomputing.demoproject.movie;
 
-import com.amigoscode.dto.MovieDto;
+import com.diversecomputing.demoproject.dto.MovieDto;
 
 import java.util.List;
 import java.util.Optional;

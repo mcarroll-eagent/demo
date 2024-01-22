@@ -1,7 +1,7 @@
-package com.amigoscode.actor;
+package com.diversecomputing.demoproject.actor;
 
 
-import com.amigoscode.dto.ActorDto;
+import com.diversecomputing.demoproject.dto.ActorDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

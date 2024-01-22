@@ -1,7 +1,6 @@
-package com.amigoscode.actor;
+package com.diversecomputing.demoproject.actor;
 
-import com.amigoscode.dto.ActorDto;
-import com.amigoscode.movie.Movie;
+import com.diversecomputing.demoproject.dto.ActorDto;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;

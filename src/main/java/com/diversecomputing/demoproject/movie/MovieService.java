@@ -1,7 +1,7 @@
-package com.amigoscode.movie;
+package com.diversecomputing.demoproject.movie;
 
-import com.amigoscode.dto.MovieDto;
-import com.amigoscode.exception.NotFoundException;
+import com.diversecomputing.demoproject.dto.MovieDto;
+import com.diversecomputing.demoproject.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

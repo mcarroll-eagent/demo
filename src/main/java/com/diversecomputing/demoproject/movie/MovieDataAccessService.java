@@ -1,14 +1,10 @@
-package com.amigoscode.movie;
+package com.diversecomputing.demoproject.movie;
 
-import com.amigoscode.actor.Actor;
-import com.amigoscode.actor.ActorRowMapper;
-import com.amigoscode.dto.MovieDto;
-import org.springframework.jdbc.core.JdbcTemplate;
+import com.diversecomputing.demoproject.dto.MovieDto;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 

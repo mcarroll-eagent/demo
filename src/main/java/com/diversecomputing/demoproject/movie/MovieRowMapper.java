@@ -1,8 +1,6 @@
-package com.amigoscode.movie;
+package com.diversecomputing.demoproject.movie;
 
-import com.amigoscode.actor.Actor;
-import com.amigoscode.actor.ActorRowMapper;
-import com.amigoscode.dto.ActorDto;
+import com.diversecomputing.demoproject.actor.Actor;
 import com.google.gson.Gson;
 import org.springframework.jdbc.core.RowMapper;
 
