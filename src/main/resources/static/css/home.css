@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+}
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0c0b13;
+    overflow: hidden;
+    width: 100%;
+}
+.nav-links{
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+}
+
+.navbar li{
+    position: relative;
+    list-style: none;
+    padding: 8px;
+
+}
+
+.nav-links li a {
+    font-family: "Kohinoor Bangla", serif;
+    color: rgb(226, 226, 226);
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px;
+    letter-spacing: 3px;
+}
+
+
+
+.nav-links li a::after{
+    content: "";
+    position: absolute;
+    background-color: #7159ff;
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom: -10px;
+    transition: 0.25s
+}
+
+.nav-links li a:hover {
+    color: white;
+}
+
+.nav-links li a:hover:after{
+    width: 100%
+}
+
+
+
+.logo{
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+}
+
+
