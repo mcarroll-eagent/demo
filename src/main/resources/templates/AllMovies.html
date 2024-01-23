@@ -2,8 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
-    <link th:href="@{/css/home.css}" rel="stylesheet" />
+    <title>All Movies</title>
     <link th:href="@{/css/navbar.css}" rel="stylesheet"/>
 </head>
 <body>
@@ -18,5 +17,11 @@
         </ul>
 
     </nav>
+
+    <div class="movieContainer"></div>
+    <th:block th:each=" movie: ${movies}">
+        <p th:text="${movie.name}"></p>
+        <p th:text="${movie.actors()}"></p>
+    </th:block>
 </body>
 </html>

@@ -6,8 +6,9 @@
 </head>
 <body>
     <div>
-        <form action="#" th:action="@{/search}" th:object="${movie}" method="get">
-            <p>Id: <input type="text" th:field="*{id}" /></p>
+        <form action="#" th:action="@{/search}" th:object="${movie}" method="post">
+            <label for="id">ID:</label>
+            <p>Id: <input type="text" name="ID" id="id"/></p>
             <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
         </form>
     </div>

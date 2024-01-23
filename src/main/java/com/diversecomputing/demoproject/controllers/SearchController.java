@@ -20,15 +20,16 @@ public class SearchController {
     }
 
     @GetMapping("/search")
-    public String searchPage(){
+    public String searchPage(Model model){
+        model.addAttribute("movie", movieService.getMovies());
         return "search";
     }
-    @GetMapping("/search/{id}")
-    public String search(@ModelAttribute("movieSearchFormData") Movie formData, Model model){
+    @PostMapping("/search")
+    public String searchResult(@ModelAttribute("movieSearchFormData") Movie formData, Model model){
         Movie mov = movieService.getMovie(formData.id());
         model.addAttribute("movie", mov);
 
-        return "search";
+        return "result";
 
     }
 }
