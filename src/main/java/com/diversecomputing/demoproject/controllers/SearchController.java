@@ -1,5 +1,6 @@
 package com.diversecomputing.demoproject.controllers;
 
+import com.diversecomputing.demoproject.dto.MovieDto;
 import com.diversecomputing.demoproject.movie.Movie;
 import com.diversecomputing.demoproject.movie.MovieDao;
 import com.diversecomputing.demoproject.movie.MovieService;
@@ -21,15 +22,13 @@ public class SearchController {
 
     @GetMapping("/search")
     public String searchPage(Model model){
-        model.addAttribute("movie", movieService.getMovies());
         return "search";
     }
     @PostMapping("/search")
-    public String searchResult(@ModelAttribute("movieSearchFormData") Movie formData, Model model){
-        Movie mov = movieService.getMovie(formData.id());
-        model.addAttribute("movie", mov);
-
-        return "result";
+    public String searchResult( String name, Model model){
+        final List<Movie> movieResults = movieService.getMovieWord(name);
+        model.addAttribute("movieResults", movieResults);
+        return "searchresult";
 
     }
 }

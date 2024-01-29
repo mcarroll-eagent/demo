@@ -51,4 +51,8 @@ public class MovieService {
             throw new IllegalStateException("oops something went wrong");
         }
     }
+
+    public List<Movie> getMovieWord(String name){
+        return movieDao.selectMovieByWord(name);
+    }
 }

@@ -6,17 +6,18 @@
     <link th:href="@{/css/navbar.css}" rel="stylesheet"/>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <h4>My Movie</h4>
-        </div>
-        <ul class ="nav-links">
-            <li><a href = "AllMovies">All Movies</a></li>
-            <li><a href="search">Search for movie by ID</a> </li>
-            <li><a href="addmovie">Add Movie</a></li>
-        </ul>
+<nav class="navbar">
+    <div class="logo">
+        <a href="/" class = "logoTitle">My Movie</a>
+        <!--            <h4>My Movie</h4>-->
+    </div>
+    <ul class ="nav-links">
+        <li><a href = "AllMovies">All Movies</a></li>
+        <li><a href="search">Search</a> </li>
+        <li><a href="addmovie">Add Movie</a></li>
+    </ul>
 
-    </nav>
+</nav>
 
     <div class="movieContainer"></div>
     <th:block th:each=" movie: ${movies}">

@@ -38,5 +38,9 @@ public class MovieController {
     @PostMapping("edit")
     public void editMovie(@RequestBody MovieDto movieDto) { movieService.editMovie(movieDto); }
 
+    @GetMapping("results")
+    public List<Movie> getMovieWord(@RequestParam(name = "name") String name){
+        return movieService.getMovieWord(name);
+    }
    // TODO: Update movie
 }

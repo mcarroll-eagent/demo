@@ -11,5 +11,7 @@ public interface MovieDao {
     int deleteMovie(int id);
     Optional<Movie> selectMovieById(int id);
     int editMovie(MovieDto movieDto);
+
+    List<Movie> selectMovieByWord(String name);
     // TODO: Update
 }

@@ -128,4 +128,32 @@ public class MovieDataAccessService implements MovieDao {
         return jdbcTemplate.update(sql, parameterSource);
     }
 
+
+    @Override
+    public List<Movie> selectMovieByWord(String name){
+        final MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("keyword", name);
+
+        // FIRST ATTEMPT
+//        final var sql = """
+//             SELECT *
+//             FROM movie
+//             WHERE movie.name ILIKE '%' || :name || '%';
+//
+//            """;
+
+
+        //SECOND ATTEMPT
+        final var sql = """
+        
+        Select m.*, to_json(array_agg(row_to_json(a))) as actors
+        FROM movie m
+        INNER JOIN actor a ON m.id = a.movie
+        WHERE m.name ILIKE CONCAT('%', :keyword, '%')
+        GROUP BY m.id;
+        
+        """;
+        return jdbcTemplate.query(sql, parameterSource, new MovieRowMapper());
+    }
+
 }

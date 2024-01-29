@@ -6,8 +6,9 @@
 </head>
 <body>
 <h1>Result</h1>
-    <p th:text="'id: ' + ${movie.id}" />
-    <p th:text="'content: ' + ${movie.name}" />
-    <a href="/search">Search for another movie</a>
+<th:block th:each=" movie: ${movieResults}">
+    <p th:text="${movie.name}"></p>
+    <p th:text="${movie.actors()}"></p>
+</th:block>
 </body>
 </html>
