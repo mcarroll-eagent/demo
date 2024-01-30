@@ -3,30 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Search Movie</title>
+    <link th:href="@{/css/search.css}" rel="stylesheet"/>
     <link th:href="@{/css/navbar.css}" rel="stylesheet"/>
 </head>
 <body>
 
-<nav class="navbar">
-    <div class="logo">
-        <a href="/" class = "logoTitle">My Movie</a>
-        <!--            <h4>My Movie</h4>-->
+<div th:replace="~{fragments/navbar :: navigation}"></div>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Movie Search</h2>
+            <form action="#" th:action="@{/search}" method="post">
+                <p><input type="text" name="name" class = "fields" placeholder="Search Keyword"/></p>
+                <p><input type="submit" value="Submit" class = "submit"/> <input class="reset" type="reset" value="Reset" /></p>
+            </form>
+        </div>
     </div>
-    <ul class ="nav-links">
-        <li><a href = "AllMovies">All Movies</a></li>
-        <li><a href="search">Search</a> </li>
-        <li><a href="addmovie">Add Movie</a></li>
-    </ul>
-
-</nav>
-
-
-    <div>
-        <form action="#" th:action="@{/search}" method="post">
-            <p>keyword: <input type="text" name="name"/></p>
-            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-        </form>
-    </div>
-
 </body>
 </html>

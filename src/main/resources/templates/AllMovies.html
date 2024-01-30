@@ -6,23 +6,16 @@
     <link th:href="@{/css/navbar.css}" rel="stylesheet"/>
 </head>
 <body>
-<nav class="navbar">
-    <div class="logo">
-        <a href="/" class = "logoTitle">My Movie</a>
-        <!--            <h4>My Movie</h4>-->
-    </div>
-    <ul class ="nav-links">
-        <li><a href = "AllMovies">All Movies</a></li>
-        <li><a href="search">Search</a> </li>
-        <li><a href="addmovie">Add Movie</a></li>
-    </ul>
+    <div th:replace="~{fragments/navbar :: navigation}"></div>
 
-</nav>
-
-    <div class="movieContainer"></div>
-    <th:block th:each=" movie: ${movies}">
+    <div class="movieContainer">
+    <th:block th:each="movie: ${movies}">
         <p th:text="${movie.name}"></p>
-        <p th:text="${movie.actors()}"></p>
+        <p>Actors: </p>
+        <th:block th:each="actor: ${movie.actors()}">
+            <a th:text="${actor.name} + ', '"></a>
+        </th:block>
     </th:block>
+    </div>
 </body>
 </html>

@@ -22,9 +22,9 @@ public class MovieDataAccessService implements MovieDao {
     public List<Movie> selectMovies() {
         final
         var sql = """
-            Select m.*, to_json(array_agg(row_to_json(a))) as actors
+            Select m.*, coalesce(json_agg(row_to_json(a)) Filter (Where a is not null), '[]') as actors
             From movie m
-            Inner Join actor a on m.id = a.movie
+            LEFT JOIN actor a on m.id = a.movie
             GROUP BY m.id
                 """;
         final List<Movie> movies =
@@ -146,9 +146,9 @@ public class MovieDataAccessService implements MovieDao {
         //SECOND ATTEMPT
         final var sql = """
         
-        Select m.*, to_json(array_agg(row_to_json(a))) as actors
-        FROM movie m
-        INNER JOIN actor a ON m.id = a.movie
+        Select m.*, coalesce(json_agg(row_to_json(a)) Filter (Where a is not null), '[]') as actors
+        From movie m
+        LEFT JOIN actor a on m.id = a.movie
         WHERE m.name ILIKE CONCAT('%', :keyword, '%')
         GROUP BY m.id;
         
