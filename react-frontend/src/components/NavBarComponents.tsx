@@ -9,6 +9,10 @@ const TopNav = styled.nav`
     overflow: hidden;
     width: 100%;
     height: 75px;
+    z-index: 9;
+    box-shadow: 0 2px 10px 0 rgb(137, 206, 255);
+    position: sticky;
+
 `
 
 const NavLinks = styled.ul`

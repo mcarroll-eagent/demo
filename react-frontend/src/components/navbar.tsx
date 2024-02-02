@@ -9,6 +9,7 @@ function Navbar() {
             </Logo>
             <NavLinks>
                 <li><Link to={"/Allmovies"}>All Movies</Link></li>
+                <li><Link to={"/searchV2"}>Search V2</Link></li>
                 <li><Link to={"/search"}>Search</Link></li>
                 <li><Link to={"/addmovie"}>Add Movie</Link></li>
             </NavLinks>

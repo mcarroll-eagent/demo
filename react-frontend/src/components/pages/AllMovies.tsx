@@ -17,20 +17,32 @@ interface Movie {
 
 const TableFormat = styled.table`
     width: 100%;
+    margin-top: 5px;
 `
 
 const TableTitle = styled.th`
-    height: 40px;
     text-align: left;
     border-bottom: 1px solid #ddd;
     padding: 15px;
-    font-family: "American Typewriter";
+    font-family: "Helvetica Neue";
+    color: #89CEFFFF;
 `
 
 const TableEntry = styled.td`
     border-bottom: 1px solid #ddd;
     padding: 15px;
-    font-family: "American Typewriter";
+    color: white;
+    font-family: Helvetica;
+`
+
+const Container = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background-color: #121212;
+    overflow: hidden;
+
 `
 
 function AllMovies()
@@ -43,26 +55,32 @@ function AllMovies()
             })
     }, []);
     return(
-        <TableFormat>
-            <tr>
-                <TableTitle>ID</TableTitle>
-                <TableTitle>Movie Title</TableTitle>
-                <TableTitle>Release Date</TableTitle>
-                <TableTitle>Actors</TableTitle>
-            </tr>
-            {
-                movies.map(movie => {
-                    return (
-                        <tr>
-                            <TableEntry> {movie.id} </TableEntry>
-                            <TableEntry> {movie.name} </TableEntry>
-                            <TableEntry> {movie.releaseDate.toString()} </TableEntry>
-                            <TableEntry> {JSON.stringify(movie.actors)}</TableEntry>
-                        </tr>
-                    )
-                })
-            }
-        </TableFormat>
+        <>
+        <Container>
+            <TableFormat>
+                <tr>
+                    <TableTitle>ID</TableTitle>
+                    <TableTitle>Movie Title</TableTitle>
+                    <TableTitle>Release Date</TableTitle>
+                    <TableTitle>Actors</TableTitle>
+                </tr>
+                {
+                    movies.map(movie => {
+                        return (
+                            <tr>
+                                <TableEntry> {movie.id} </TableEntry>
+                                <TableEntry> {movie.name} </TableEntry>
+                                <TableEntry> {movie.releaseDate.toString()} </TableEntry>
+                                <TableEntry> {movie.actors.map(actor => actor.name).join(", ")}</TableEntry>
+                            </tr>
+                        )
+                    })
+                }
+            </TableFormat>
+
+        </Container>
+        </>
+
     )
 }
 
