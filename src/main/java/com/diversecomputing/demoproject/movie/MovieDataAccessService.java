@@ -3,6 +3,8 @@ package com.diversecomputing.demoproject.movie;
 import com.diversecomputing.demoproject.dto.MovieDto;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -60,18 +62,28 @@ public class MovieDataAccessService implements MovieDao {
         return movies;
     }
 
+    /**
+     *
+     * @param movie
+     * @return Returns inserted id of Movie
+     */
     @Override
     public int insertMovie(Movie movie) {
         final MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("name", movie.name());
         parameterSource.addValue("releaseDate", movie.releaseDate());
+
         var sql = """
                 INSERT INTO movie(name, release_date)
                 VALUES (:name, :releaseDate);
                 """;
+
+        final KeyHolder keyHolder = new GeneratedKeyHolder();
+
         return jdbcTemplate.update(
                 sql,
-                parameterSource
+                parameterSource,
+                keyHolder
         );
     }
 

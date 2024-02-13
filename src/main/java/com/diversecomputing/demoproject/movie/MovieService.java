@@ -20,12 +20,16 @@ public class MovieService {
         return movieDao.selectMovies();
     }
 
-    public void addNewMovie(Movie movie) {
+    public Movie addNewMovie(Movie movie) {
         // TODO: check if movie exists
-        int result = movieDao.insertMovie(movie);
-        if (result != 1) {
-            throw new IllegalStateException("oops something went wrong");
-        }
+        int resultId = movieDao.insertMovie(movie);
+
+        return new Movie(
+                resultId,
+                movie.name(),
+                null,
+                movie.releaseDate()
+        );
     }
 
     public void deleteMovie(Integer id) {

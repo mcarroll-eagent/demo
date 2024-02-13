@@ -1,9 +1,11 @@
 package com.diversecomputing.demoproject.movie;
 
 import com.diversecomputing.demoproject.dto.MovieDto;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -27,8 +29,8 @@ public class MovieController {
     }
 
     @PostMapping
-    public void addMovie(@RequestBody Movie movie) {
-        movieService.addNewMovie(movie);
+    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
+        return ResponseEntity.of(Optional.of(movieService.addNewMovie(movie)));
     }
 
     @DeleteMapping("{id}")
