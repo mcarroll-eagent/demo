@@ -111,7 +111,6 @@ const SearchForm = styled.form`
 
 
 `
-
 export { SearchForm }
 export {SubmitButton}
 export {Field}

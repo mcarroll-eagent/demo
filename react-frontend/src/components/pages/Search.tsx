@@ -1,7 +1,14 @@
 import {useForm} from "react-hook-form";
-import {Field, FormContainer, ResetButton, SearchContainer, SearchForm, SubmitButton} from "../SearchComponents.tsx";
+import {
+    Field,
+    FormContainer,
+    ResetButton,
+    SearchContainer,
+    SearchForm,
+    SubmitButton
+} from "../SearchComponents.tsx";
 import axios, {AxiosResponse} from "axios";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 
 
@@ -22,25 +29,22 @@ interface Movie {
     releaseDate: Date
 }
 
-
-
 function Search() {
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm<MovieValues>()
-    const [ movieResponse, setMovieResponse ] = useState<Movie[]>([])
+    //const [ movieResponse, setMovieResponse ] = useState<Movie[]>([])
     const onSubmit = (data: MovieValues) => {
 
         console.log("Form Submitted", data);
         axios.get("http://localhost:8080/api/v1/movies/results", { params: data })
-            .then(response => {
-                console.log(response.data)
-                setMovieResponse(response.data)
+            .then( (response: AxiosResponse<Movie[]>) => {
 
+                //setMovieResponse(response.data)
+
+                navigate('/searchresults', {state: { movieResponse: response.data } })
             })
 
-        navigate('/searchresults', { state: movieResponse })
     }
-
 
 
     return (

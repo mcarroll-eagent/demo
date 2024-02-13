@@ -188,6 +188,7 @@ function AddMovie(){
             .then(response => {
                 console.log(response.data);
                 setMovieResponse(response.data);
+
             })
 
     }
