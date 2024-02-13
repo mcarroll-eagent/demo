@@ -4,7 +4,6 @@ const SearchContainer = styled.div`
     position: relative;
     justify-content: center;
     background-color: #121212;
-    height: 100vh;
 `
 
 const FormContainer = styled.div`

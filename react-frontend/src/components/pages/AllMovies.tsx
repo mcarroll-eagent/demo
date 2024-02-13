@@ -39,9 +39,7 @@ const Container = styled.div`
     position: relative;
     display: flex;
     justify-content: center;
-    height: 100vh;
     background-color: #121212;
-    overflow: hidden;
 
 `
 
@@ -52,6 +50,7 @@ function AllMovies()
         axios.get('http://localhost:8080/api/v1/movies/')
             .then( (response: AxiosResponse<Movie[]>) => {
                 setMovies(response.data);
+                console.log(response.data);
             })
     }, []);
     return(

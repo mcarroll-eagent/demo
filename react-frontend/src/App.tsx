@@ -6,6 +6,7 @@ import Search from "./components/pages/Search.tsx";
 import DynamicSearch from "./components/pages/DynamicSearch.tsx";
 import { Helmet } from "react-helmet";
 import Home from "./components/pages/Home.tsx";
+import AddMovie from "./components/pages/AddMovie.tsx";
 
 const AppWrapper = styled.div`
     background-color: #121212;
@@ -28,6 +29,7 @@ function App(){
                 <Route path={"/allmovies"} element={<AllMovies/>}/>
                 <Route path={"/search"} element={<Search/>}/>
                 <Route path={"/searchv2"} element={<DynamicSearch/>}/>
+                <Route path={"/addmovie"} element={<AddMovie/>}/>
             </Routes>
         </AppWrapper>
         </>

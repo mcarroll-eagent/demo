@@ -1,4 +1,5 @@
 import styled, {keyframes} from "styled-components";
+import {IconButton, Modal} from "@diversecomputing/react-components";
 
 const HomeContainer = styled.div`
     position: relative;
@@ -57,6 +58,9 @@ function Home()
             <HomeContainer>
                 <Text>Welcome to</Text>
                 <Logo>My Movie.</Logo>
+                <Modal closeButton={<IconButton label='Close'>&times;</IconButton>}>
+                    <p>Hello, world!</p>
+                </Modal>
             </HomeContainer>
 
 

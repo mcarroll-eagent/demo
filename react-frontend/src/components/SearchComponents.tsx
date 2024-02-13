@@ -17,18 +17,19 @@ const FormContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: fixed;
+    //position: fixed;
     background-color: rgb(30, 30, 30);
     margin-bottom: 10%;
     border-radius: 1.5rem;
     padding: 40px;
+    width: 25rem;
     
     h2 {
         position: relative;
         color: rgb(137, 206, 255);
         text-transform: uppercase;
         letter-spacing: 5px;
-        font-size: 20px;
+        font-size: 35px;
         font-family: "Kohinoor Bangla", serif;
         font-weight: bold;
         margin-bottom: 10%;
@@ -38,7 +39,7 @@ const FormContainer = styled.div`
 
 
 const ResetButton = styled.input`
-    width:100%;
+    width:50%;
     padding: 5px;
     background-color: rgb(255, 104, 109);
     border: 2px solid rgba(0, 0, 0, 0);
@@ -80,7 +81,7 @@ const Field = styled.input`
 `
 
 const SubmitButton = styled.input`
-    width:100%;
+    width:50%;
     padding: 5px;
     background-color: rgb(126, 255, 129);
     border: 2px solid rgba(0, 0, 0, 0);
@@ -99,7 +100,19 @@ const SubmitButton = styled.input`
 
 `
 
+const SearchForm = styled.form`
+    justify-content: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    
 
+
+`
+
+export { SearchForm }
 export {SubmitButton}
 export {Field}
 export { ResetButton }
