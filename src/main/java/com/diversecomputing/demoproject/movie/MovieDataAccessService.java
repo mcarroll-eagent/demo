@@ -33,28 +33,6 @@ public class MovieDataAccessService implements MovieDao {
                 jdbcTemplate.query(sql, new MovieRowMapper());
 
 
-//        var actorData = """
-//                        SELECT name, id, movie
-//                        FROM actor
-//                        WHERE movie = :movieId
-//                        """;
-//
-//        for(final Movie movie : movies) {
-//            final MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-//            parameterSource.addValue("movieId", movie.id());
-//
-//            final List<Actor> newActors =
-//                    jdbcTemplate.query(actorData, parameterSource, new ActorRowMapper());
-//
-//            final Movie newMovie = new Movie(
-//                    movie.id(),
-//                    movie.name(),
-//                    newActors,
-//                    movie.releaseDate()
-//            );
-//
-//            movies.set(movies.indexOf(movie), newMovie);
-//        }
 
 
 
