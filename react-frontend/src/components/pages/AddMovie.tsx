@@ -161,7 +161,7 @@ const AlertData = styled.p`
 
 type MovieValues={
     name: string;
-    releaseDate: Date;
+    releaseDate: string;
 }
 
 interface MovieResponse extends MovieValues {

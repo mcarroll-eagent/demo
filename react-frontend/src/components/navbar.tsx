@@ -12,6 +12,7 @@ function Navbar() {
                 <li><Link to={"/searchV2"}>Search V2</Link></li>
                 <li><Link to={"/search"}>Search</Link></li>
                 <li><Link to={"/addmovie"}>Add Movie</Link></li>
+                <li><Link to={"/login"}>Log In</Link></li>
             </NavLinks>
 
         </TopNav>

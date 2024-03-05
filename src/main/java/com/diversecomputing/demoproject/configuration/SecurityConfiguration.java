@@ -27,6 +27,8 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class SecurityConfiguration {
@@ -43,12 +45,13 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(new AntPathRequestMatcher("/auth/**")).permitAll();
-                    auth.requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole("ADMIN");
-                    auth.requestMatchers(new AntPathRequestMatcher("/user/**")).hasAnyRole("ADMIN", "USER");
+                    auth.requestMatchers(new AntPathRequestMatcher("/api/**")).permitAll();
+                    //auth.requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole("ADMIN");
+                    //auth.requestMatchers(new AntPathRequestMatcher("/user/**")).hasAnyRole("ADMIN", "USER");
                     auth.anyRequest().authenticated();
                 });
 
-         http
+         return http
                 .oauth2ResourceServer(
                         httpSecurityOAuth2ResourceServerConfigurer ->
                                 httpSecurityOAuth2ResourceServerConfigurer.jwt(Customizer.withDefaults()))
@@ -94,7 +97,20 @@ public class SecurityConfiguration {
         return jwtConverter;
     }
 
+    @Bean
+    public WebMvcConfigurer cors(){
 
+
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowCredentials(true)
+                        .allowedOrigins("http://localhost:5173")
+                        .allowedOriginPatterns("*");
+            }
+        };
+
+    }
 
 
 

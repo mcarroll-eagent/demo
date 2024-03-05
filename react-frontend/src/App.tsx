@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import Home from "./components/pages/Home.tsx";
 import AddMovie from "./components/pages/AddMovie.tsx";
 import SearchResults from "./components/pages/SearchResults.tsx";
+import LogIn from "./components/pages/LogIn.tsx";
 
 const AppWrapper = styled.div`
     background-color: #121212;
@@ -32,6 +33,7 @@ function App(){
                 <Route path={"/searchv2"} element={<DynamicSearch/>}/>
                 <Route path={"/addmovie"} element={<AddMovie/>}/>
                 <Route path={"/searchresults"} element={<SearchResults/>}/>
+                <Route path={"/login"} element={<LogIn/>}/>
             </Routes>
         </AppWrapper>
         </>

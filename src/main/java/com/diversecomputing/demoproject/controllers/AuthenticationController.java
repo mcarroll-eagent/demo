@@ -16,7 +16,7 @@ import javax.naming.AuthenticationException;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin("*")
+@CrossOrigin()
 public class AuthenticationController {
 
     @Autowired

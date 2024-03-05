@@ -45,9 +45,14 @@ const Container = styled.div`
 
 function AllMovies()
 {
+    const authToken = sessionStorage.getItem('token')
+    console.log('authToken: ', authToken)
+    const headers = {
+        'Authorization': 'Bearer ' + authToken,
+    }
     const [ movies, setMovies ] = useState<Movie[]>([]);
     useEffect(() => {
-        axios.get('http://localhost:8080/api/v1/movies/')
+        axios.get('http://localhost:8080/api/v1/movies', {headers})
             .then( (response: AxiosResponse<Movie[]>) => {
                 setMovies(response.data);
                 console.log(response.data);
