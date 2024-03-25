@@ -43,7 +43,7 @@ function DynamicSearch() {
     const [search, setSearch] = useState("")
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/v1/movies/")
+        axios.get("http://localhost:8080/api/v1/movies")
             .then((response: AxiosResponse<Movie[]>)=>{
                 setNameList(response.data);
             })

@@ -1,10 +1,13 @@
-import {PageContainer, ValidFieldContainer, AddForm, Error, ResetButton, SubmitButton, Field, FormContainer, AlertDiv, AlertData} from "../LogInComponents.tsx";
+import {PageContainer, ValidFieldContainer, AddForm, Error, ResetButton, SubmitButton, Field, FormContainer} from "../LogInComponents.tsx";
 import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../Context/store.tsx";
+import {LogInSuccess} from "../../Context/slices/logSlice.tsx";
 
 const schema = yup.object().shape({
     username: yup.string().required("Username is required"),
@@ -24,11 +27,16 @@ function LogIn(){
     const { register, handleSubmit, formState: {errors} } = useForm<Credentials>({ resolver: yupResolver(schema) })
     const navigate = useNavigate();
 
+    const loggedIn = useSelector((state: RootState) => (state.isLoggedIn.value))
+    const dispatch = useDispatch();
+
+
     const onSubmit = (data: Credentials) => {
         console.log("attempting to log in")
         try{
             axios.post("http://localhost:8080/auth/login", data)
                 .then(response => {
+                    dispatch(LogInSuccess(response.data));
                     console.log(response.data);
                     setLoginResponse(response.data)
                     sessionStorage.setItem('token', response.data.jwt)

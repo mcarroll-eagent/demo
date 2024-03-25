@@ -1,4 +1,6 @@
 import styled, {keyframes} from "styled-components";
+import {useSelector} from "react-redux";
+import {RootState} from "../../Context/store.tsx";
 
 const HomeContainer = styled.div`
     position: relative;
@@ -52,11 +54,19 @@ const Text = styled.p`
 
 function Home()
 {
+
+    const loggedIn = useSelector((state: RootState) => (state.isLoggedIn.value))
+    const user = useSelector((state: RootState) => (state.isLoggedIn.username))
+    console.log("testing")
+    console.log(user, "the username")
+
     return(
         <>
             <HomeContainer>
                 <Text>Welcome to</Text>
                 <Logo>My Movie.</Logo>
+
+                { loggedIn && <Text>Hello, {user}</Text>}
             </HomeContainer>
 
 

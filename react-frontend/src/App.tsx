@@ -10,6 +10,8 @@ import AddMovie from "./components/pages/AddMovie.tsx";
 import SearchResults from "./components/pages/SearchResults.tsx";
 import LogIn from "./components/pages/LogIn.tsx";
 
+
+
 const AppWrapper = styled.div`
     background-color: #121212;
     height: 100vh;
@@ -36,6 +38,7 @@ function App(){
                 <Route path={"/login"} element={<LogIn/>}/>
             </Routes>
         </AppWrapper>
+
         </>
     );
 }
