@@ -24,7 +24,7 @@ const TableTitle = styled.th`
     text-align: left;
     border-bottom: 1px solid #ddd;
     padding: 15px;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica Neue",serif;
     color: #89CEFFFF;
 `
 
@@ -46,7 +46,6 @@ const Container = styled.div`
 function AllMovies()
 {
     const authToken = sessionStorage.getItem('token')
-    console.log('authToken: ', authToken)
     const headers = {
         'Authorization': 'Bearer ' + authToken,
     }
@@ -55,37 +54,40 @@ function AllMovies()
         axios.get('http://localhost:8080/api/v1/movies', {headers})
             .then( (response: AxiosResponse<Movie[]>) => {
                 setMovies(response.data);
-                console.log(response.data);
             })
-    }, []);
-    return(
-        <>
-        <Container>
-            <TableFormat>
-                <tr>
-                    <TableTitle>ID</TableTitle>
-                    <TableTitle>Movie Title</TableTitle>
-                    <TableTitle>Release Date</TableTitle>
-                    <TableTitle>Actors</TableTitle>
-                </tr>
-                {
-                    movies.map(movie => {
-                        return (
-                            <tr>
-                                <TableEntry> {movie.id} </TableEntry>
-                                <TableEntry> {movie.name} </TableEntry>
-                                <TableEntry> {movie.releaseDate.toString()} </TableEntry>
-                                <TableEntry> {movie.actors.map(actor => actor.name).join(", ")}</TableEntry>
-                            </tr>
-                        )
-                    })
-                }
-            </TableFormat>
+    });
 
-        </Container>
-        </>
 
-    )
+
+        return (
+            <>
+                <Container>
+                    <TableFormat>
+                        <tr>
+                            <TableTitle>ID</TableTitle>
+                            <TableTitle>Movie Title</TableTitle>
+                            <TableTitle>Release Date</TableTitle>
+                            <TableTitle>Actors</TableTitle>
+                        </tr>
+                        {
+                            movies.map(movie => {
+                                return (
+                                    <tr>
+                                        <TableEntry> {movie.id} </TableEntry>
+                                        <TableEntry> {movie.name} </TableEntry>
+                                        <TableEntry> {movie.releaseDate.toString()} </TableEntry>
+                                        <TableEntry> {movie.actors.map(actor => actor.name).join(", ")}</TableEntry>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </TableFormat>
+
+                </Container>
+            </>
+
+        )
+
 }
 
 export default AllMovies;

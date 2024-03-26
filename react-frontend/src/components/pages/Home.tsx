@@ -52,21 +52,31 @@ const Text = styled.p`
     margin: 0;
 `
 
+const Welcome = styled.p`
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+    font-family: "Kohinoor Bangla", serif;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0;
+`
+
 function Home()
 {
 
     const loggedIn = useSelector((state: RootState) => (state.isLoggedIn.value))
     const user = useSelector((state: RootState) => (state.isLoggedIn.username))
-    console.log("testing")
-    console.log(user, "the username")
 
     return(
         <>
             <HomeContainer>
+                { loggedIn && <Welcome>Hello {user}</Welcome>}
                 <Text>Welcome to</Text>
                 <Logo>My Movie.</Logo>
 
-                { loggedIn && <Text>Hello, {user}</Text>}
+
             </HomeContainer>
 
 

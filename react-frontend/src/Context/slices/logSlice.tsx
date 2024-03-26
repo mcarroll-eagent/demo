@@ -3,11 +3,13 @@ import {createSlice} from "@reduxjs/toolkit";
 interface logState{
     value: boolean;
     username: string;
+    jwt: string;
 }
 
 const initialState: logState = {
     value: false,
     username: '',
+    jwt: '',
 };
 
 const logSlice = createSlice({
@@ -19,6 +21,10 @@ const logSlice = createSlice({
             state.username = action.payload;
         },
 
+        setUserInfo: (state, action) => {
+          state.jwt = action.payload.jwt;
+        },
+
         LogOutSuccess: (state) =>{
             state.value = false;
             state.username = '';
@@ -27,6 +33,6 @@ const logSlice = createSlice({
     },
 });
 
-export const { LogInSuccess, LogOutSuccess } = logSlice.actions;
+export const { LogInSuccess, LogOutSuccess, setUserInfo } = logSlice.actions;
 export default logSlice.reducer;
 

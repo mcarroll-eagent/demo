@@ -5,6 +5,8 @@ import axios from "axios";
 import {AlertBanner} from "@diversecomputing/react-components";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import {useSelector} from "react-redux";
+import {RootState} from "../../Context/store.tsx";
 
 
 const PageContainer = styled.div`
@@ -137,8 +139,7 @@ const Error = styled.p`
     font-family: Helvetica;
 `
 
-const ValidFieldContainer = styled.div
-`
+const ValidFieldContainer = styled.div`
 width: 100%;
 
 `
@@ -193,47 +194,52 @@ function AddMovie(){
 
     }
     console.log('errors', errors);
-    return(
-        <>
-            <PageContainer>
 
-                <FormContainer>
-                    <h2>Add Movie</h2>
-                    <AddForm onSubmit={handleSubmit(onSubmit)}>
-                        <ValidFieldContainer>
-                            <Error>{errors.name?.message}</Error>
-                            <Field type="text" placeholder="Movie name" {...register("name")}/>
-                        </ValidFieldContainer>
-                        <ValidFieldContainer>
-                            <Error>{errors.releaseDate?.message}</Error>
-                            <Field type="text" placeholder="yyyy-mm-dd" {...register("releaseDate")}/>
-                        </ValidFieldContainer>
-                        <SubmitButton type="submit" value="Add"/>
-                        <ResetButton type="reset" value="Reset"/>
-                    </AddForm>
-                </FormContainer>
-                {
-                    movieResponse ? (
-                            <AlertBanner
-                                variant={"success"}
-                            >
-                                <AlertContainer>
-                                    <AlertDiv>
+    const loggedIn = useSelector((state: RootState) => (state.isLoggedIn.value))
 
-                                        <AlertData>{movieResponse?.name} was successfully added!</AlertData>
-                                    </AlertDiv>
-                                </AlertContainer>
-                            </AlertBanner>
-                        )
+    if(loggedIn) {
+        return (
+            <>
+                <PageContainer>
 
-                        : null
-                }
+                    <FormContainer>
+                        <h2>Add Movie</h2>
+                        <AddForm onSubmit={handleSubmit(onSubmit)}>
+                            <ValidFieldContainer>
+                                <Error>{errors.name?.message}</Error>
+                                <Field type="text" placeholder="Movie name" {...register("name")}/>
+                            </ValidFieldContainer>
+                            <ValidFieldContainer>
+                                <Error>{errors.releaseDate?.message}</Error>
+                                <Field type="text" placeholder="yyyy-mm-dd" {...register("releaseDate")}/>
+                            </ValidFieldContainer>
+                            <SubmitButton type="submit" value="Add"/>
+                            <ResetButton type="reset" value="Reset"/>
+                        </AddForm>
+                    </FormContainer>
+                    {
+                        movieResponse ? (
+                                <AlertBanner
+                                    variant={"success"}
+                                >
+                                    <AlertContainer>
+                                        <AlertDiv>
 
-            </PageContainer>
+                                            <AlertData>{movieResponse?.name} was successfully added!</AlertData>
+                                        </AlertDiv>
+                                    </AlertContainer>
+                                </AlertBanner>
+                            )
 
-        </>
+                            : null
+                    }
 
-    )
+                </PageContainer>
+
+            </>
+
+        )
+    }
 }
 
 export default AddMovie;

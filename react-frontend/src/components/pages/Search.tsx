@@ -8,7 +8,6 @@ import {
     SubmitButton
 } from "../SearchComponents.tsx";
 import axios, {AxiosResponse} from "axios";
-import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 
 

@@ -2,12 +2,10 @@ import {PageContainer, ValidFieldContainer, AddForm, Error, ResetButton, SubmitB
 import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../Context/store.tsx";
-import {LogInSuccess} from "../../Context/slices/logSlice.tsx";
+import {useDispatch} from "react-redux";
+import {LogInSuccess, setUserInfo} from "../../Context/slices/logSlice.tsx";
 
 const schema = yup.object().shape({
     username: yup.string().required("Username is required"),
@@ -22,12 +20,9 @@ type Credentials={
 
 function LogIn(){
 
-    const [loginResponse, setLoginResponse] = useState<Credentials>();
-
     const { register, handleSubmit, formState: {errors} } = useForm<Credentials>({ resolver: yupResolver(schema) })
     const navigate = useNavigate();
 
-    const loggedIn = useSelector((state: RootState) => (state.isLoggedIn.value))
     const dispatch = useDispatch();
 
 
@@ -36,9 +31,10 @@ function LogIn(){
         try{
             axios.post("http://localhost:8080/auth/login", data)
                 .then(response => {
-                    dispatch(LogInSuccess(response.data));
+                    dispatch(LogInSuccess(response.data.user.username));
                     console.log(response.data);
-                    setLoginResponse(response.data)
+                    console.log("USERNAME", response.data.user.username);
+                    dispatch(setUserInfo(response.data));
                     sessionStorage.setItem('token', response.data.jwt)
                     navigate("/allmovies")
                 })
